@@ -1,0 +1,28 @@
+<div class="document-box">
+  <h3 class="heading heading--m document-box__title">
+    {{ document.title }}
+  </h3>
+  <div class="document-box__metadata">
+    {% match document.from %}
+    {% when Some with (from) %}
+    <a href="/correspondents/{{ from.id }}" class="document-box__from">
+      <span>{{ from.name }}</span>
+    </a>
+    {% else %}
+    <a class="document-box__from">
+      <span></span>
+    </a>
+    {% endmatch %}
+    <div class="document-box__date">
+      {{ document.date.format("%b %e, %Y") }}
+    </div>
+  </div>
+  <a href="/documents/{{ document.id }}" class="document-box__picture">
+    <img src="{{ document.image.src|safe }}"/>
+  </a>
+  <div class="document-box__tags">
+    {% for tag in document.tags %}
+      {% include "components/tag.html" %}
+    {% endfor %}
+  </div>
+</div>

@@ -1,0 +1,30 @@
+[package]
+name = "dmsrs"
+version = "0.1.0"
+authors = ["Denys Vitali <denys@denv.it>"]
+build = "src/build.rs"
+
+[dependencies]
+askama = { version = "0.7", features = ["with-rocket"]}
+atomic = {version = "0.4", features = ["nightly"]}
+cairo-rs = { version= "0.3.0", features = ["png"]}
+chrono =  { version = "0.4", features = ["serde"] }
+rocket = "0.3.14"
+rocket_codegen = "0.3.14"
+serde = "1.0"
+serde_json = "1.0"
+serde_derive = "1.0"
+tera = "0.11"
+r2d2 = "0.8.2"
+r2d2_postgres = "0.14.0"
+postgres = { version= "0.15", features = ["with-chrono"] }
+poppler = { git = "https://github.com/DMSrs/poppler-rs" }
+tesseract = { git = "https://github.com/DMSrs/tesseract-rs" }
+
+[dependencies.rocket_contrib]
+version = "*"
+default-features = false
+features = ["handlebars_templates", "tera_templates"]
+
+[build-dependencies]
+askama = { version = "0.7", features = ["with-rocket"]}

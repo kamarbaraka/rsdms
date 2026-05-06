@@ -1,0 +1,49 @@
+$tag-size: 25px;
+$tag-width: 100px;
+
+.tag {
+
+  display: inline-block;
+  position: relative;
+  align-items: center;
+  font-size: rem(14px);
+  padding: rem(10px);
+  color: currentColor;
+  height: calc(#{$tag-size} + 1em);
+  width: $tag-width + $tag-size;
+  z-index: 0;
+
+  &::before { 
+    content: '';
+    position: absolute;
+    top: 0;
+    left: rem(5px);
+    bottom: 0;
+    margin: auto;
+    display: inline-block;
+    width: rem($tag-size);
+    height: rem($tag-size);
+    background-color: currentColor;
+    border-radius: rem($tag-size);
+    font-weight: 700;
+    transform-origin: left center;
+    z-index: -1;
+    transition: width 200ms cubic-bezier(.65,.05,.36,1);
+  }
+
+  &:hover {
+    &::before {
+      width: calc(100% - #{rem($tag-size)/2});
+    }
+    
+    .tag__name {
+      color: #fff;
+    }
+  }
+}
+
+.tag__name {
+  padding: 0 calc(1.25em + #{rem($tag-size/2)});
+  color: $color-blue;
+  transition: color 300ms;
+}

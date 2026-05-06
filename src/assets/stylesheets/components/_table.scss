@@ -1,0 +1,35 @@
+table {
+  width: 100%;
+
+  tr > td > div.actions-content{
+    justify-content: space-around;
+  }
+
+  th, td {
+    padding: 8px 8px 8px 10px;
+  }
+
+  th {
+    background-color: $color-table--header;
+    color: $white;
+  }
+
+  tr {
+    background-color: $color-table;
+    
+    &:nth-child(2n + 1){
+      background-color: $color-table--alt;
+    }
+  }
+}
+
+table.correspondents-table {
+  tr> td:nth-child(2), tr > th:nth-child(2) {
+    width: rem(200px);
+  }
+
+  tr > td:nth-child(2) {
+    display: flex;
+    justify-content: center;
+  }
+}

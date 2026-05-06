@@ -1,0 +1,81 @@
+{% extends "menupage.html" %}
+{%  block page %}
+  <div class="documents documents--show">
+    <h1 class="heading heading--xl page-title">{{ document.title }}</h1>
+    <div class="single-document">
+      <div class="single-document__document document">
+        <div class="document__from-date-container">
+        {% match document.from %}
+        {% when Some with (from) %}
+          <a href="/correspondent/{{ from.id }}" class="document__from-date-container__from">
+              <span>{{ from.name }}</span>
+          </a>
+        {% else %}
+          <a class="document__from-date-container__from">
+            <span></span>
+          </a>
+        {% endmatch %}
+          <div class="document__from-date-container__date">{{ document.date.format("%b %e, %Y") }}</div>
+        </div>
+        <a href="/documents/view/{{ document.id }}" class="document__picture">
+            <img src="{{ document.image.src|safe }}"/>
+        </a>
+      </div>
+      <div class="single-document__right-box">
+        <div class="right-box__attributes">
+          <h3 class="heading heading--m heading--no-margin-top">Document Attributes</h3>
+          <div class="attributes_attribute">
+            <span class="attribute__name">Title</span>
+            <span class="attribute__value">{{ document.title }}</span>
+          </div>
+
+            {% match document.from %}
+            {% when Some with (from) %}
+          <div class="attributes_attribute">
+            <span class="attribute__name">From</span>
+            <span class="attribute__value">
+              <a href="/correspondents/{{ from.id }}">{{ from.name }}</a>
+            </span>
+          </div>
+            {% else %}
+            {% endmatch %}
+
+
+          <div class="attributes_attribute">
+            <span class="attribute__name">Date</span>
+            <span class="attribute__value">{{ document.date.format("%b %e, %Y") }}</span>
+          </div>
+
+          <div class="attributes_attribute">
+            <span class="attribute__name">Added on</span>
+            <span class="attribute__value">{{ document.added_on.format("%b %e, %Y") }}</span>
+          </div>
+
+          <div class="attributes_attribute">
+            <span class="attribute__name">Pages</span>
+            <span class="attribute__value">{{ document.num_pages }}</span>
+          </div>
+
+          <div class="attributes_attribute">
+            <span class="attribute__name">Tags</span>
+            <div class="attribute__value tags">
+              {% for tag in document.tags %}
+                 {% include "components/tag.html" %}
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+
+        <div class="right-box__actions">
+          <h4 class="heading heading--m">Actions</h4>
+          <div class="actions__content">
+            <a href="/documents/view/{{document.id}}"><button class="button button--view"><i class="fas fa-eye"></i> View</button></a>
+            <a href="/documents/download/{{document.id}}"><button class="button button--download"><i class="fas fa-arrow-alt-circle-down"></i> Get</button></a>
+            <button class="button button--edit"><i class="fas fa-edit"></i> Edit</button>
+            <button class="button button--delete"><i class="fas fa-trash-alt"></i>Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{%  endblock page %}

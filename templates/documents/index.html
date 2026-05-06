@@ -1,0 +1,11 @@
+{% extends "menupage.html" %}
+{%  block page %}
+  <div class="documents documents--index">
+    <h1 class="heading heading--xl page-title">Documents</h1>
+    <div class="listing listing--documents">
+      {% for document in documents %}
+        {% include "components/document-box.html" %}
+      {% endfor %}
+    </div>
+  </div>
+{%  endblock page %}

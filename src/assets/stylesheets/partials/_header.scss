@@ -1,0 +1,41 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  height: rem($navbar-height);
+  margin: auto;
+  padding: rem($navbar-leftPadding) rem($navbar-topPadding);
+  background-color: rgba($white, .95);
+}
+
+.header__nav {
+  display: flex;
+}
+
+.menu {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+}
+
+.menu__item {
+  display: flex;
+  align-items: center;
+  
+  > a {
+    color: $navbar-menu-item--inactive;
+    padding: rem(20px);
+  }
+
+  &.is-current {
+    > a {
+      color: $navbar-menu-item--active;
+    }
+  }
+}
